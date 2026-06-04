@@ -128,12 +128,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen w-full">
-        <AppSidebar />
-        <main className="ml-64 flex flex-1 flex-col">
+        <AppSidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
+        <main className="flex flex-1 flex-col lg:ml-64">
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="flex h-12 w-12 items-center justify-center lg:hidden"
+            aria-label="Open sidebar"
+          >
+            <Menu className="h-5 w-5 text-foreground" />
+          </button>
           <Outlet />
         </main>
       </div>
