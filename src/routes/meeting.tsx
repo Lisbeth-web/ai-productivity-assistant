@@ -60,7 +60,7 @@ ${notes}`;
 
   return (
     <div className="flex flex-1 flex-col p-8">
-      <div className="mb-6 flex items-center gap-3">
+      <div className="sticky top-0 z-10 -mx-8 -mt-8 flex items-center gap-3 border-b bg-background/95 px-8 pb-6 pt-8 backdrop-blur-sm">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600">
           <FileText className="h-5 w-5" />
         </div>

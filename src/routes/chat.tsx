@@ -98,7 +98,7 @@ function ChatPage() {
 
   return (
     <div className="flex flex-1 flex-col">
-      <div className="flex h-16 items-center gap-3 border-b px-8">
+      <div className="sticky top-0 z-10 flex h-16 items-center gap-3 border-b bg-background/95 px-8 backdrop-blur-sm">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-500/10 text-rose-600">
           <MessageSquare className="h-5 w-5" />
         </div>
