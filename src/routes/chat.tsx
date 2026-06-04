@@ -40,7 +40,7 @@ function ChatPage() {
 
   const { messages, sendMessage, status, setMessages } = useChat({
     id: "workplace-chat",
-    initialMessages: storedMessages,
+    messages: storedMessages,
     transport: chatTransport,
   });
 
