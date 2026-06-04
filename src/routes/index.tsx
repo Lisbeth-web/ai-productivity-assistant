@@ -60,7 +60,7 @@ const features = [
 function DashboardPage() {
   return (
     <div className="flex flex-1 flex-col p-8">
-      <div className="mb-8">
+      <div className="sticky top-0 z-10 -mx-8 -mt-8 bg-background/95 px-8 pb-8 pt-8 backdrop-blur-sm">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Welcome back
         </h1>
@@ -74,7 +74,7 @@ function DashboardPage() {
           <Link
             key={feature.title}
             to={feature.url}
-            className="group flex flex-col rounded-xl border bg-card p-6 transition-shadow hover:shadow-md"
+            className="group flex flex-col rounded-xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
           >
             <div className="mb-4 flex items-center justify-between">
               <div

@@ -76,7 +76,7 @@ Please provide:
 
   return (
     <div className="flex flex-1 flex-col p-8">
-      <div className="mb-6 flex items-center gap-3">
+      <div className="sticky top-0 z-10 -mx-8 -mt-8 flex items-center gap-3 border-b bg-background/95 px-8 pb-6 pt-8 backdrop-blur-sm">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
           <Mail className="h-5 w-5" />
         </div>
@@ -91,7 +91,7 @@ Please provide:
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="space-y-4 rounded-xl border bg-card p-6">
+        <div className="space-y-4 rounded-xl border bg-card p-6 shadow-sm">
           <div className="space-y-2">
             <Label htmlFor="purpose">Email Purpose</Label>
             <Input
@@ -162,7 +162,7 @@ Please provide:
           </Button>
         </div>
 
-        <div className="flex flex-col rounded-xl border bg-card">
+        <div className="flex flex-col rounded-xl border bg-card shadow-sm">
           <div className="flex items-center justify-between border-b px-6 py-3">
             <span className="text-sm font-medium text-card-foreground">
               Generated Email
