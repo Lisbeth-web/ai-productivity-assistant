@@ -74,7 +74,7 @@ function DashboardPage() {
           <Link
             key={feature.title}
             to={feature.url}
-            className="group flex flex-col rounded-xl border bg-card p-6 transition-shadow hover:shadow-md"
+            className="group flex flex-col rounded-xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
           >
             <div className="mb-4 flex items-center justify-between">
               <div

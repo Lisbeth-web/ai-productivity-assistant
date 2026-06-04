@@ -83,7 +83,7 @@ Provide a prioritized, scheduled plan.`;
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="space-y-4 rounded-xl border bg-card p-6">
+        <div className="space-y-4 rounded-xl border bg-card p-6 shadow-sm">
           <div className="space-y-2">
             <Label htmlFor="goals">Goals & Tasks</Label>
             <Textarea
@@ -119,7 +119,7 @@ Provide a prioritized, scheduled plan.`;
           </Button>
         </div>
 
-        <div className="flex flex-col rounded-xl border bg-card">
+        <div className="flex flex-col rounded-xl border bg-card shadow-sm">
           <div className="flex items-center justify-between border-b px-6 py-3">
             <span className="text-sm font-medium text-card-foreground">
               Task Plan
