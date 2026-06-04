@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
+import { DefaultChatTransport, type UIMessage } from "ai";
 import {
   MessageSquare,
   Send,
@@ -25,6 +25,41 @@ export const Route = createFileRoute("/chat")({
 
 const STORAGE_KEY = "ai-workplace-chat";
 
+type StoredMessage = UIMessage & { content?: unknown; parts?: unknown };
+
+function getMessageText(message: StoredMessage) {
+  if (Array.isArray(message.parts)) {
+    return message.parts
+      .map((part) => (part.type === "text" && "text" in part ? part.text : ""))
+      .join("");
+  }
+
+  return typeof message.content === "string" ? message.content : "";
+}
+
+function normalizeSavedMessages(value: unknown): UIMessage[] {
+  if (!Array.isArray(value)) return [];
+
+  return value.flatMap((message, index) => {
+    if (!message || typeof message !== "object") return [];
+
+    const stored = message as StoredMessage;
+    const role = stored.role;
+    if (role !== "user" && role !== "assistant" && role !== "system") return [];
+
+    const text = getMessageText(stored).trim();
+    if (!text) return [];
+
+    return [
+      {
+        id: typeof stored.id === "string" ? stored.id : `saved-${index}`,
+        role,
+        parts: [{ type: "text", text }],
+      } as UIMessage,
+    ];
+  });
+}
+
 function ChatPage() {
   const chatTransport = useRef(new DefaultChatTransport({ api: "/api/chat" })).current;
 
@@ -42,8 +77,8 @@ function ChatPage() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const saved = JSON.parse(raw);
-        if (Array.isArray(saved) && saved.length > 0) {
+        const saved = normalizeSavedMessages(JSON.parse(raw));
+        if (saved.length > 0) {
           setMessages(saved);
         }
       }
@@ -133,9 +168,7 @@ function ChatPage() {
           <div className="mx-auto max-w-3xl space-y-6">
             {messages.map((message) => {
               const isUser = message.role === "user";
-              const text = message.parts
-                .map((part) => (part.type === "text" ? part.text : ""))
-                .join("");
+              const text = getMessageText(message);
 
               return (
                 <div
