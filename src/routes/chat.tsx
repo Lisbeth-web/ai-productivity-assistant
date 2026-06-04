@@ -26,28 +26,41 @@ export const Route = createFileRoute("/chat")({
 const STORAGE_KEY = "ai-workplace-chat";
 
 function ChatPage() {
-  const [storedMessages, setStoredMessages] = useState(() => {
-    if (typeof window === "undefined") return [];
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch {
-      return [];
-    }
-  });
-
-  const chatTransport = new DefaultChatTransport({ api: "/api/chat" });
+  const chatTransport = useRef(new DefaultChatTransport({ api: "/api/chat" })).current;
 
   const { messages, sendMessage, status, setMessages } = useChat({
     id: "workplace-chat",
-    messages: storedMessages,
     transport: chatTransport,
   });
 
+  const hydratedRef = useRef(false);
+
+  // Load saved messages from localStorage after hydration (client-only)
   useEffect(() => {
-    if (typeof window !== "undefined" && messages.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-      setStoredMessages(messages);
+    if (hydratedRef.current) return;
+    hydratedRef.current = true;
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw);
+        if (Array.isArray(saved) && saved.length > 0) {
+          setMessages(saved);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, [setMessages]);
+
+  // Persist messages after hydration
+  useEffect(() => {
+    if (!hydratedRef.current) return;
+    if (messages.length > 0) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+      } catch {
+        // ignore
+      }
     }
   }, [messages]);
 
