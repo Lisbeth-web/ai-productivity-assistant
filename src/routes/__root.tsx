@@ -134,7 +134,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen w-full">
         <AppSidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
-        <main className="flex flex-1 flex-col lg:ml-64">
+        <main className="flex flex-1 flex-col overflow-auto lg:ml-64">
           <button
             onClick={() => setMobileOpen(true)}
             className="flex h-12 w-12 items-center justify-center lg:hidden"
