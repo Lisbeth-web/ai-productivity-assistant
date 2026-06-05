@@ -22,33 +22,51 @@ export const Route = createFileRoute("/")({
   component: DashboardPage,
 });
 
-const features = [
+type Feature = {
+  title: string;
+  description: string;
+  icon: typeof Mail;
+  url: string;
+  gradient: string;
+  iconBg: string;
+  border: string;
+  hoverShadow: string;
+  bgTint: string;
+};
+
+const features: Feature[] = [
   {
     title: "Smart Email Generator",
     description: "Draft professional emails tailored to tone and audience.",
     icon: Mail,
     url: "/email",
-    gradient: "from-blue-500 via-cyan-500 to-teal-400",
-    glow: "shadow-blue-500/30",
-    iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
+    gradient: "from-sky-500 via-blue-500 to-cyan-400",
+    iconBg: "bg-gradient-to-br from-sky-500 to-blue-600",
+    border: "hover:border-sky-400/70",
+    hoverShadow: "hover:shadow-[0_0_30px_-5px_rgba(56,189,248,0.6)]",
+    bgTint: "from-sky-50/80 via-blue-50/40 to-transparent dark:from-sky-950/30 dark:via-blue-950/20",
   },
   {
     title: "Meeting Notes Summarizer",
     description: "Extract key points, actions, and deadlines from notes.",
     icon: FileText,
     url: "/meeting",
-    gradient: "from-emerald-500 via-green-500 to-lime-400",
-    glow: "shadow-emerald-500/30",
-    iconBg: "bg-gradient-to-br from-emerald-500 to-lime-500",
+    gradient: "from-emerald-500 via-green-500 to-teal-400",
+    iconBg: "bg-gradient-to-br from-emerald-500 to-green-600",
+    border: "hover:border-emerald-400/70",
+    hoverShadow: "hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.6)]",
+    bgTint: "from-emerald-50/80 via-green-50/40 to-transparent dark:from-emerald-950/30 dark:via-green-950/20",
   },
   {
     title: "AI Task Planner",
     description: "Prioritize and schedule your work automatically.",
     icon: CalendarDays,
     url: "/planner",
-    gradient: "from-amber-500 via-orange-500 to-red-400",
-    glow: "shadow-orange-500/30",
-    iconBg: "bg-gradient-to-br from-amber-500 to-orange-500",
+    gradient: "from-orange-500 via-amber-500 to-rose-400",
+    iconBg: "bg-gradient-to-br from-orange-500 to-rose-500",
+    border: "hover:border-orange-400/70",
+    hoverShadow: "hover:shadow-[0_0_30px_-5px_rgba(251,146,60,0.6)]",
+    bgTint: "from-orange-50/80 via-amber-50/40 to-transparent dark:from-orange-950/30 dark:via-amber-950/20",
   },
   {
     title: "AI Research Assistant",
@@ -56,17 +74,21 @@ const features = [
     icon: Search,
     url: "/research",
     gradient: "from-violet-500 via-purple-500 to-fuchsia-400",
-    glow: "shadow-violet-500/30",
-    iconBg: "bg-gradient-to-br from-violet-500 to-fuchsia-500",
+    iconBg: "bg-gradient-to-br from-violet-500 to-purple-600",
+    border: "hover:border-violet-400/70",
+    hoverShadow: "hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.6)]",
+    bgTint: "from-violet-50/80 via-purple-50/40 to-transparent dark:from-violet-950/30 dark:via-purple-950/20",
   },
   {
     title: "AI Chat",
     description: "Ask anything and get professional AI assistance.",
     icon: MessageSquare,
     url: "/chat",
-    gradient: "from-rose-500 via-pink-500 to-fuchsia-400",
-    glow: "shadow-pink-500/30",
-    iconBg: "bg-gradient-to-br from-rose-500 to-pink-500",
+    gradient: "from-pink-500 via-fuchsia-500 to-rose-400",
+    iconBg: "bg-gradient-to-br from-pink-500 to-fuchsia-600",
+    border: "hover:border-pink-400/70",
+    hoverShadow: "hover:shadow-[0_0_30px_-5px_rgba(236,72,153,0.6)]",
+    bgTint: "from-pink-50/80 via-fuchsia-50/40 to-transparent dark:from-pink-950/30 dark:via-fuchsia-950/20",
   },
 ];
 
@@ -79,12 +101,13 @@ const stats = [
 function DashboardPage() {
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
-      {/* Decorative gradient blobs */}
-      <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-gradient-to-br from-fuchsia-400/30 via-pink-400/20 to-transparent blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-40 h-96 w-96 rounded-full bg-gradient-to-br from-cyan-400/30 via-blue-400/20 to-transparent blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-gradient-to-br from-amber-300/20 via-orange-300/10 to-transparent blur-3xl" />
+      {/* Mesh gradient background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(at_15%_15%,rgba(167,139,250,0.18),transparent_55%),radial-gradient(at_85%_10%,rgba(56,189,248,0.18),transparent_55%),radial-gradient(at_85%_85%,rgba(236,72,153,0.12),transparent_55%),radial-gradient(at_10%_90%,rgba(52,211,153,0.12),transparent_55%)]" />
+      <div className="pointer-events-none absolute -left-32 -top-32 -z-10 h-80 w-80 rounded-full bg-violet-400/25 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-40 -z-10 h-96 w-96 rounded-full bg-cyan-400/25 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-1/3 -z-10 h-72 w-72 rounded-full bg-fuchsia-300/20 blur-3xl" />
 
-      <div className="sticky top-0 z-10 -mx-8 -mt-8 bg-background/80 px-8 pb-8 pt-8 backdrop-blur-md">
+      <div className="sticky top-0 z-10 -mx-8 -mt-8 bg-background/70 px-8 pb-8 pt-8 backdrop-blur-md">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-fuchsia-500/10 via-violet-500/10 to-cyan-500/10 px-3 py-1 text-xs font-medium">
@@ -94,9 +117,8 @@ function DashboardPage() {
               </span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight">
-              Welcome{" "}
-              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 bg-clip-text text-transparent">
-                back
+              <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                Welcome back
               </span>
             </h1>
             <p className="mt-2 text-muted-foreground">
@@ -134,16 +156,18 @@ function DashboardPage() {
           <Link
             key={feature.title}
             to={feature.url}
-            className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${feature.glow}`}
+            className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 ${feature.border} ${feature.hoverShadow}`}
           >
             {/* gradient top bar */}
             <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${feature.gradient}`} />
-            {/* hover gradient overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.06]`} />
+            {/* tinted background */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${feature.bgTint} opacity-60`} />
+            {/* hover sheen */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.08]`} />
 
             <div className="relative mb-4 flex items-center justify-between">
               <div
-                className={`flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg ${feature.iconBg}`}
+                className={`flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-110 ${feature.iconBg}`}
               >
                 <feature.icon className="h-6 w-6" />
               </div>
