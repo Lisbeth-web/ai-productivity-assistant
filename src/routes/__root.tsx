@@ -85,6 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Automate daily work tasks with AI-powered email generation, meeting summaries, task planning, research, and chat." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "AI Workplace Productivity Assistant" },
+      { name: "twitter:description", content: "Automate daily work tasks with AI-powered email generation, meeting summaries, task planning, research, and chat." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6893562b-5644-4b4d-afae-0ebdc36c1cc2" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6893562b-5644-4b4d-afae-0ebdc36c1cc2" },
     ],
     links: [
       {
