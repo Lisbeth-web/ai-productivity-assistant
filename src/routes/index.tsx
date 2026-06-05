@@ -7,9 +7,6 @@ import {
   MessageSquare,
   ArrowRight,
   Sparkles,
-  TrendingUp,
-  Zap,
-  Clock,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -92,12 +89,6 @@ const features: Feature[] = [
   },
 ];
 
-const stats = [
-  { label: "Tasks Automated", value: "12.4k", icon: Zap, accent: "text-amber-500", ring: "ring-amber-400/30" },
-  { label: "Hours Saved", value: "847", icon: Clock, accent: "text-cyan-500", ring: "ring-cyan-400/30" },
-  { label: "Productivity Boost", value: "+38%", icon: TrendingUp, accent: "text-emerald-500", ring: "ring-emerald-400/30" },
-];
-
 function DashboardPage() {
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
@@ -126,28 +117,6 @@ function DashboardPage() {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Stats row */}
-      <div className="relative grid gap-4 sm:grid-cols-3">
-        {stats.map((s) => (
-          <div
-            key={s.label}
-            className={`relative overflow-hidden rounded-2xl border bg-card/80 p-5 shadow-sm backdrop-blur-sm ring-1 ${s.ring}`}
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  {s.label}
-                </p>
-                <p className="mt-1 text-2xl font-bold">{s.value}</p>
-              </div>
-              <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-background ${s.accent}`}>
-                <s.icon className="h-5 w-5" />
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
 
       {/* Feature cards */}
